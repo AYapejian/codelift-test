@@ -1,4 +1,5 @@
 var Hapi = require('hapi');
+var mongo = require('mongodb');
 var server = new Hapi.Server();
 server.connection();
 
@@ -13,4 +14,10 @@ server.route({
     handler: function (request, reply) {
         return reply.success();
     }
+});
+
+server.start(function(err) {
+    if (!err) { throw err; }
+
+    console.log('Started');
 });
