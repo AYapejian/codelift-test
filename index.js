@@ -1,7 +1,9 @@
 var Hapi = require('hapi');
 var mongo = require('mongodb');
 var server = new Hapi.Server();
-server.connection();
+server.connection({
+    port: 3000
+});
 
 server.decorate('reply', 'success', function () {
 
@@ -17,7 +19,7 @@ server.route({
 });
 
 server.start(function(err) {
-    if (!err) { throw err; }
+    if (err) { throw err; }
 
-    console.log('Started');
+    console.log(`Started server on ${server.info.uri}`);
 });
